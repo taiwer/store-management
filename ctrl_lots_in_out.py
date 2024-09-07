@@ -56,7 +56,7 @@ class lots_in_out_window(QMainWindow, Ui_lots_in_out):
         # sql = "insert into in_log values(" + self.date_time + ",'" + self.material_id + "','" + self.material_name + "','" + self.spec + "'," + self.in_num + ","+self.per_price+",'"+self.position+"',"+self.total_price+",'" + self.user_man + "','" + self.agree_man + "', null);"
 
         for i in range(0,len(self.export_data)):
-            sql+=f"({date_str}, '{self.export_data[i][0]}','{self.export_data[i][1]}', '{self.export_data[i][2]}', {self.export_data[i][8]}, {self.export_data[i][6]}, '{self.export_data[i][4]}', {self.export_data[i][9]}, '{self.export_data[i][10]}','{self.export_data[i][11]}', null)"
+            sql+=f"({date_str}, '{self.export_data[i][0]}','{self.export_data[i][1]}', '{self.export_data[i][2]}', '{self.export_data[i][8]}', '{self.export_data[i][6]}', '{self.export_data[i][4]}', {self.export_data[i][9]}, '{self.export_data[i][10]}','{self.export_data[i][11]}', null)"
             if i<len(self.export_data)-1:
                 sql+=','
             else:
@@ -141,7 +141,8 @@ class lots_in_out_window(QMainWindow, Ui_lots_in_out):
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 self.model.setItem(i, 5, item)
 
-                item = QStandardItem(format(float(datas[i][6]), '.0f'))
+                # item = QStandardItem(format(float(datas[i][6]), '.0f'))
+                item = QStandardItem(datas[i][6])
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 self.model.setItem(i, 6, item)
 
@@ -153,7 +154,8 @@ class lots_in_out_window(QMainWindow, Ui_lots_in_out):
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 self.model.setItem(i, 8, item)
 
-                item = QStandardItem(datas[i][9])
+                # item = QStandardItem(str(datas[i][9]))
+                item = QStandardItem("{}".format(str(datas[i][9]))) #
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 self.model.setItem(i, 9, item)
 
@@ -290,7 +292,8 @@ class lots_in_out_window(QMainWindow, Ui_lots_in_out):
                 conn.close()
                 return
             tmp.append(num_ll[i])
-            tmp.append(str(res[5] * tt))  # 总价
+            # tmp.append(str(float(res[5]) * tt))  # 总价
+            tmp.append(tt)
             tmp.append(user_ll[i])
             tmp.append(code_ll[i])
             table_data.append(tmp)
