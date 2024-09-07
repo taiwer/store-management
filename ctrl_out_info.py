@@ -30,6 +30,8 @@ class out_info_window(QMainWindow, Ui_out_info):
         conn = sqlite3.connect("material_management.db")
         conn.text_factory = str
         cur = conn.cursor()
+        sql_out_log = "create table if not exists out_log(date_time int,material_id varchar(32),material_name varchar(100),spec varchar(100),out_num float,per_price varchar(20), pos varchar(32),total_price varchar(100), user_man varchar(20),agree_man varchar(20), out_log_id INTEGER PRIMARY KEY AUTOINCREMENT)"
+        cur.execute(sql_out_log)
         sql = "select * from out_log"
         cur.execute(sql)
         res = cur.fetchall()

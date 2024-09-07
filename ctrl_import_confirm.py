@@ -149,11 +149,11 @@ class import_confirm_window(QMainWindow, Ui_import_confirm):
                 conn = sqlite3.connect("material_management.db")
                 conn.text_factory = str
                 cur = conn.cursor()
-                sql = "drop table out_log"
+                sql = "drop table if exists out_log"
                 cur.execute(sql)
                 conn.commit()
-                cur.execute(
-                    "create table out_log(date_time int,material_id varchar(32),material_name varchar(100),spec varchar(100),out_num float,varchar(100) float, pos varchar(100), total_price varchar(100),user_man varchar(20),agree_man varchar(20), out_log_id INTEGER PRIMARY KEY AUTOINCREMENT)")
+                sql_out = "create table if not exists out_log(date_time int,material_id varchar(32),material_name varchar(100),spec varchar(100),out_num float,per_price varchar(20), pos varchar(32),total_price varchar(100), user_man varchar(20),agree_man varchar(20), out_log_id INTEGER PRIMARY KEY AUTOINCREMENT)"
+                cur.execute(sql_out)
 
                 conn.commit()
                 cur.close()
