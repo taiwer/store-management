@@ -126,11 +126,11 @@ class material_info_window(QMainWindow, Ui_material_info):
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 self.model.setItem(i, 3, item)
 
-                item = QStandardItem("".format(datas[i][4]))
+                item = QStandardItem("{}".format(datas[i][4]))
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 self.model.setItem(i, 4, item)
 
-                item = QStandardItem(datas[i][5])
+                item = QStandardItem(str(datas[i][5]))
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 self.model.setItem(i, 5, item)
 

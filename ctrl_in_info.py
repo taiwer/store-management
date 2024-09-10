@@ -120,7 +120,7 @@ class in_info_window(QMainWindow, Ui_in_info):
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 self.model.setItem(i, 4, item) # 收入数量
 
-                item = QStandardItem(str(datas[i][5]))
+                item = QStandardItem(datas[i][5])
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 self.model.setItem(i, 5, item) # 配发单位
 

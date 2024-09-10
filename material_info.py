@@ -222,7 +222,7 @@ class Ui_material_info(object):
         self.label_4.setText(_translate("material_info", "部署位置："))
         self.label_5.setText(_translate("material_info", "结存数量范围(含):"))
         self.label_6.setText(_translate("material_info", "——"))
-        self.label_7.setText(_translate("material_info", " 配发单位范围(含):"))
+        self.label_7.setText(_translate("material_info", " 配发单位范围: 通过字符串筛选"))
         self.query_btn.setText(_translate("material_info", "筛选"))
         self.clear_query_info.setText(_translate("material_info", "清除筛选"))
         self.textEdit.setHtml(_translate("material_info", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
