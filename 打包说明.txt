@@ -3,4 +3,4 @@ conda activate py37_win32
 pip install openpyxl==2.3.5 -i https://pypi.douban.com/simple/
 pip install pyinstaller -i https://pypi.douban.com/simple/
 pip install pyqt5 -i https://pypi.douban.com/simple/
-在目录下：pyinstaller -w -i images/image.ico main.py
+在目录下：pyinstaller -w -i images/ima455555555555556yutge.ico main.py

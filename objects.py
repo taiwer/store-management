@@ -40,7 +40,7 @@ class In_Log():
         conn = sqlite3.connect("material_management.db")
         conn.text_factory = str
         cur = conn.cursor()
-        sql = "insert into in_log values(" + self.date_time + ",'" + self.material_id + "','" + self.material_name + "','" + self.spec + "'," + self.in_num + ","+self.per_price+",'"+self.position+"',"+self.total_price+",'" + self.user_man + "','" + self.agree_man + "', null);"
+        sql = "insert into in_log values(" + self.date_time + ",'" + self.material_id + "','" + self.material_name + "','" + self.spec + "','" + self.in_num + "','"+self.per_price+"','"+self.position+"','"+self.total_price+"','" + self.user_man + "','" + self.agree_man + "', null);"
         cur.execute(sql)
         conn.commit()
         cur.close()
@@ -64,7 +64,7 @@ class Out_Log():
         conn = sqlite3.connect("material_management.db")
         conn.text_factory = str
         cur = conn.cursor()
-        sql = "insert into out_log values(" + self.date_time + ",'" + self.material_id + "','" + self.material_name + "','" + self.spec + "'," + self.out_num + ","+self.per_price+",'"+self.position+"',"+self.total_price+",'" + self.user_man + "','" + self.agree_man + "', null);"
+        sql = "insert into out_log values(" + self.date_time + ",'" + self.material_id + "','" + self.material_name + "','" + self.spec + "','" + self.out_num + "','"+self.per_price+"','"+self.position+"','"+self.total_price+"','" + self.user_man + "','" + self.agree_man + "', null);"
         cur.execute(sql)
         conn.commit()
         cur.close()

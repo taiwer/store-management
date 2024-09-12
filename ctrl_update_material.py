@@ -135,7 +135,7 @@ class update_material_window(QMainWindow, Ui_update_material):
         conn = sqlite3.connect("material_management.db")
         conn.text_factory = str
         cur = conn.cursor()
-        sql = "update material set material_id='" + id + "',material_name='" + name + "',spec='" + spec + "',unit='" + unit + "',per_price=" + per_price + ",pos='" + position + "',ori_num=" + ori_num + ", now_num=" + now_num + " where material_id='" + self.ori_id + "'"
+        sql = "update material set material_id='" + id + "',material_name='" + name + "',spec='" + spec + "',unit='" + unit + "',per_price='" + str(per_price) + "',pos='" + position + "',ori_num=" + ori_num + ", now_num=" + now_num + " where material_id='" + self.ori_id + "'"
         try:
             cur.execute(sql)
         except:
@@ -143,11 +143,11 @@ class update_material_window(QMainWindow, Ui_update_material):
             cur.close()
             conn.close()
             return
-        sql = "update in_log set material_id='" + id + "', material_name='" + name + "', spec='" + spec + "',per_price=" + per_price + ",pos='" + position + "', total_price=in_num*" + str(
-            per_price) + " where material_id='" + self.ori_id + "'"
+        sql = "update in_log set material_id='" + id + "', material_name='" + name + "', spec='" + spec + "',per_price='" + str(per_price) + "',pos='" + position + "', total_price='" + str(
+            per_price) + "' where material_id='" + self.ori_id + "'"
         cur.execute(sql)
-        sql = "update out_log set material_id='" + id + "', material_name='" + name + "', spec='" + spec + "',per_price=" + per_price + ",pos='" + position + "', total_price=out_num*" + str(
-            per_price) + " where material_id='" + self.ori_id + "'"
+        sql = "update out_log set material_id='" + id + "', material_name='" + name + "', spec='" + spec + "',per_price='" + str(per_price) + "',pos='" + position + "', total_price='" + str(
+            per_price) + "' where material_id='" + self.ori_id + "'"
         cur.execute(sql)
         conn.commit()
         cur.close()

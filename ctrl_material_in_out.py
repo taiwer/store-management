@@ -176,27 +176,25 @@ class material_in_log_window(QMainWindow, Ui_material_in_out):
         per_price = self.per_price_lineEdit.text()
         position = self.position_lineEdit.text()
         # 判断 per_price 是否能转为数值
-        per_price_tmp = False
-        try:
-            t = float(per_price)
-            per_price_tmp = True
-        except:
-            pass
-
-        if per_price == '未知' or per_price == '' or per_price_tmp == False:
-            total_price = '-1'
-            per_price = '-1'
-        else:
-            total_price = str(float(per_price) * float(num))
+        # per_price_tmp = False
+        # try:
+        #     t = float(per_price)
+        #     per_price_tmp = True
+        # except:
+        #     pass
+        #
+        # if per_price == '未知' or per_price == '' or per_price_tmp == False:
+        #     total_price = '-1'
+        #     per_price = '-1'
+        # else:
+        total_price = str(per_price)
 
         if log_type == "调入":
             after_num = before_num + num_value
-            after_num = str(after_num)
             tmp_in_log = In_Log(log_date, id, name, spec, num, per_price, position, total_price, user_man, agree_man)
             tmp_in_log.new_in_log()
         else:
             after_num = before_num - num_value
-            after_num = str(after_num)
             tmp_out_log = Out_Log(log_date, id, name, spec, num, per_price, position, total_price, user_man, agree_man)
             tmp_out_log.new_out_log()
 
@@ -204,7 +202,7 @@ class material_in_log_window(QMainWindow, Ui_material_in_out):
         conn = sqlite3.connect("material_management.db")
         conn.text_factory = str
         cur = conn.cursor()
-        sql = "update material set now_num=" + after_num + " where material_id='" + id + "'"
+        sql = "update material set now_num=" + str(after_num) + " where material_id='" + id + "'"
         cur.execute(sql)
         conn.commit()
         cur.close()

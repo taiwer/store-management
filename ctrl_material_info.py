@@ -154,31 +154,42 @@ class material_info_window(QMainWindow, Ui_material_info):
         flag1 = self.st_num.text() == ""
         flag2 = self.ed_num.text() == ""
 
+
         # if self.st_num.text()=="" or self.ed_num=="" or self.st_per_price=="" or self.ed_per_price=="":
         #     QMessageBox.question(self, '查询失败！', "结存数量和单价范围不可为空！\n这两项不做筛选请点击\"清楚筛选\"恢复默认值！", QMessageBox.Yes)
         #     return
-        if not flag1:
+
+        sql = "select * from material where 1=1"
+        # 数量筛选
+        if flag1 and not flag2:
             try:
-                st_num_value = float(self.st_num.text())
+                ed_num = float(self.ed_num.text())
             except:
                 return (-2, [])
-        if not flag2:
+            sql += " and now_num<=" + str(ed_num)
+        if not flag1 and flag2:
             try:
-                ed_num_value = float(self.ed_num.text())
+                st_num = float(self.st_num.text())
+            except:
+                return (-2, [])
+            sql += " and now_num>=" + str(st_num)
+
+        if not flag1 and not flag2:
+            try:
+                st_num = float(self.st_num.text())
+                ed_num = float(self.ed_num.text())
+                if st_num > ed_num:
+                    return (-1, [])
+                sql += " and now_num>=" + str(st_num) + " and now_num<=" + str(ed_num)
             except:
                 return (-2, [])
 
-        if not flag1 and not flag2 and st_num_value > ed_num_value:
-            return (-1, [])
+        # 单位筛选
+        if self.st_per_price.text() != "":
+            st_per_price = self.st_per_price.text()
+            sql = "select * from material where per_price like '%" + st_per_price + "%'"
 
 
-        st_num = self.st_num.text()
-        ed_num = self.ed_num.text()
-        if flag1:
-            st_num = "0"
-        if flag2:
-            ed_num = "999999999"
-        sql = "select * from material where (now_num between " + st_num + " and " + ed_num + " )"
         if self.id.text() != "":
             id_ll = self.id.text()
             id_ll = id_ll.strip('%\n\t ')
@@ -276,7 +287,7 @@ class material_info_window(QMainWindow, Ui_material_info):
         self.st_num.setText("")
         self.ed_num.setText("")
         self.st_per_price.setText("")
-        self.ed_per_price.setText("")
+        # self.ed_per_price.setText("")
         (flag, res) = self.my_query()
         self.fill_table(res)
 

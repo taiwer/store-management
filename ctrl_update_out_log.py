@@ -153,7 +153,7 @@ class update_out_log_window(QMainWindow, Ui_update_out_log):
             conn = sqlite3.connect("material_management.db")
             conn.text_factory = str
             cur = conn.cursor()
-            sql = "update out_log set date_time=" + log_date + ",out_num=" + num + ", per_price=" + per_price + ", pos='" + position + "', total_price=" + per_price + ", user_man='" + user_man + "', agree_man='" + agree_man + "' where out_log_id=" + self.ori_out_log_id
+            sql = "update out_log set date_time=" + log_date + ",out_num=" + num + ", per_price='" + per_price + "', pos='" + position + "', total_price='" + per_price + "', user_man='" + user_man + "', agree_man='" + agree_man + "' where out_log_id=" + self.ori_out_log_id
             cur.execute(sql)
             conn.commit()
             cur.close()
