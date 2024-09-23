@@ -130,8 +130,8 @@ class import_confirm_window(QMainWindow, Ui_import_confirm):
                 sql = "insert into in_log values "
                 for i in range(0, len(all_ll)):
                     sql += ("(" + all_ll[i][0] + ",'" + all_ll[i][1] + "','" + all_ll[i][2] + "','" + all_ll[i][3]
-                            + "','" + all_ll[i][4] + "','" + all_ll[i][5] + "','" + all_ll[i][6] + "'," + all_ll[i][7]
-                            + ",'" + all_ll[i][8] + "','" + all_ll[i][9] + "',null)")
+                            + "','" + all_ll[i][4] + "','" + all_ll[i][5] + "','" + all_ll[i][6] + "','" + all_ll[i][7]
+                            + "','" + all_ll[i][8] + "','" + all_ll[i][9] + "',null)")
                     if i < len(all_ll) - 1:
                         sql += ","
                 cur.execute(sql)
