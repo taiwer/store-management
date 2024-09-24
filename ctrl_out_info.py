@@ -98,7 +98,7 @@ class out_info_window(QMainWindow, Ui_out_info):
         self.export_data = datas
         self.model = QStandardItemModel(len(datas), 10)
         self.model.setHorizontalHeaderLabels(
-            ['日期', '装备编码', '装备名称', '规格型号', '发出数量', '配发单位', '部署位置', '使用单位', '责任人', '责任单位'])
+            ['日期', '装备编码', '装备名称', '规格型号', '发出数量', '配发单位', '部署位置', '责任人', '责任单位'])
         if datas != []:
             for i in range(0, len(datas)):
                 tdate_year = datas[i][0] // 10000
@@ -133,17 +133,17 @@ class out_info_window(QMainWindow, Ui_out_info):
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 self.model.setItem(i, 6, item)
 
-                item = QStandardItem(str(datas[i][7]))
-                item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
-                self.model.setItem(i, 7, item)
+                # item = QStandardItem(str(datas[i][7]))
+                # item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                # self.model.setItem(i, 7, item)
 
                 item = QStandardItem(datas[i][8])
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
-                self.model.setItem(i, 8, item)
+                self.model.setItem(i, 7, item)
 
                 item = QStandardItem(datas[i][9])
                 item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
-                self.model.setItem(i, 9, item)
+                self.model.setItem(i, 8, item)
 
         self.tableView.setModel(self.model)
         self.tableView.resizeColumnsToContents()
